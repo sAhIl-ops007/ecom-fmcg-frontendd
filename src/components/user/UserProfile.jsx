@@ -36,10 +36,10 @@ export const UserProfile = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { label: "First Name", placeholder: "John", type: "text" },
-                  { label: "Last Name", placeholder: "Doe", type: "text" },
-                  { label: "Email", placeholder: "john@example.com", type: "email" },
-                  { label: "Phone Number", placeholder: "+1 234 567 890", type: "tel" },
+                  { label: "First Name", placeholder: "firstname", type: "text" },
+                  { label: "Last Name", placeholder: "lastname", type: "text" },
+                  { label: "Email", placeholder: "your@example.com", type: "email" },
+                  { label: "Phone Number", placeholder: "+91 123 456 7890", type: "tel" },
                   { label: "Role", value: "User", disabled: true }
                 ].map((field, index) => (
                   <div key={index} className="space-y-1">
@@ -64,10 +64,10 @@ export const UserProfile = () => {
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
-                  { label: "Address", placeholder: "123 Main St" },
-                  { label: "City", placeholder: "New York" },
-                  { label: "State", placeholder: "NY" },
-                  { label: "ZIP Code", placeholder: "10001" }
+                  { label: "Address", placeholder: "address" },
+                  { label: "City", placeholder: "city" },
+                  { label: "State", placeholder: "state" },
+                  { label: "PIN Code", placeholder: "pincode" }
                 ].map((field, index) => (
                   <div key={index} className="space-y-1">
                     <label className="text-sm font-medium text-gray-600">{field.label}</label>

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FiUser, FiMail, FiPhone, FiLock, FiHome, FiMapPin, FiCheckCircle } from 'react-icons/fi';
+import { FiUser, FiMail, FiPhone, FiLock, FiHome, FiCheckCircle } from 'react-icons/fi';
 import { Link } from "react-router-dom";
 
 export const SignUp = () => {
@@ -14,7 +14,7 @@ export const SignUp = () => {
   const [areas, setAreas] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
 
   const submitHandler = async (data) => {
@@ -167,7 +167,7 @@ export const SignUp = () => {
                   <select
                     {...register("cityId", { required: "City is required" })}
                     onChange={(e) => getAreaByCityId(e.target.value)}
-                    disabled={!watch("stateId")}
+                    // disabled={!watch("stateId")}
                     className={`w-full px-4 py-3 rounded-xl border ${errors.cityId ? 'border-red-300' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
                   >
                     <option value="">Select City</option>
@@ -182,7 +182,7 @@ export const SignUp = () => {
                   <label className="block text-sm font-medium text-gray-700 mb-1">Area</label>
                   <select
                     {...register("areaId", { required: "Area is required" })}
-                    disabled={!watch("cityId")}
+                    // disabled={!watch("cityId")}
                     className={`w-full px-4 py-3 rounded-xl border ${errors.areaId ? 'border-red-300' : 'border-gray-300'} focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
                   >
                     <option value="">Select Area</option>

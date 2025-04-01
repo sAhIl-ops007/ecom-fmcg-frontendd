@@ -106,7 +106,7 @@ export const Home = () => {
       </div>
 
       {/* Product Categories Section */}
-      <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto ">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-3">Shop by Category</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -206,8 +206,8 @@ export const Home = () => {
               className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
             >
               <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <FiStar key={i} className="w-5 h-5 text-yellow-400 fill-current" />
+                {[...Array(5)].map((i) => (
+                  <FiStar key={i} className="w-5 h-5 text-indigo-800 fill-current" />
                 ))}
               </div>
               <blockquote className="text-lg text-gray-700 mb-6">
@@ -228,7 +228,7 @@ export const Home = () => {
           <p className="text-indigo-100 mb-8 max-w-2xl mx-auto">
             Subscribe to our newsletter for exclusive offers and the latest product updates
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          {/* <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input 
               type="email" 
               placeholder="Enter your email" 
@@ -237,12 +237,12 @@ export const Home = () => {
             <button className="px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors shadow-sm">
               Subscribe
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-12">
+      <footer className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 p-4 text-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>

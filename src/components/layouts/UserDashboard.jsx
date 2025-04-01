@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
+import axios from 'axios';
 import { 
   FiHome, 
   FiShoppingBag, 
@@ -10,6 +11,22 @@ import {
 } from "react-icons/fi"
 
 export const UserDashboard = () => {
+  
+  const [field, setfield] = useState([])
+
+  const getNameByUserId = async () => {
+
+      const res = await axios.get("/findeuser/"+localStorage.getItem("id"));
+      console.log(res.data);
+      setfield(res.data.data)
+
+  }
+
+  useEffect(()=>{
+    getNameByUserId()
+  },[])
+
+
   return (
     <div className="w-72 h-screen bg-gradient-to-b from-indigo-600 to-purple-600 text-white p-6 fixed top-0 left-0 shadow-xl overflow-hidden">
       {/* User Profile Header */}
@@ -19,7 +36,7 @@ export const UserDashboard = () => {
         </div>
         <div>
           <h2 className="text-xl font-bold">Welcome Back</h2>
-          <p className="text-sm text-white/80">Premium Member</p>
+          <p className="text-sm text-white/80">{field.firstName} {field.lastName}</p>
         </div>
       </div>
 
