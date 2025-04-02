@@ -13,10 +13,9 @@ const {
 
 const submitHandler = async (data) => {
     console.log(data);
+    const res =await axios.post("/addproduct",data)
+    console.log("data",res.data.data);
     
-        const res =await axios.post("/addproduct",data)
-       console.log("data",res.data.data);
-       
 
 
     
@@ -90,10 +89,7 @@ return (
                 {errors.productName && <p className="text-red-500 text-xs mt-1">{errors.productName.message}</p>}
             </div>
 
-              {/* Product Image */}
-
-
-              
+              {/* Product Image */}         
             {/* <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-600">Product Image*</label>
                 <input
@@ -105,41 +101,16 @@ return (
             </div> */}
 
 
-
-              {/* SKU */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">SKU (Stock Keeping Unit)*</label>
-                <input
-                type="text"
-                placeholder="Enter SKU"
-                className={`p-3 border ${errors.stockeepingunit ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('stockeepingunit', { required: 'SKU is required' })}
-                />
-                {errors.stockeepingunit && <p className="text-red-500 text-xs mt-1">{errors.stockeepingunit.message}</p>}
-            </div>
-
               {/* Price */}
             <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-600">Price*</label>
                 <input
-                type="number"
+                type="text"
                 placeholder="Enter price"
                 className={`p-3 border ${errors.price ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
                 {...register('price', { required: 'Price is required' })}
                 />
                 {errors.price && <p className="text-red-500 text-xs mt-1">{errors.price.message}</p>}
-            </div>
-
-              {/* MRP */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">MRP*</label>
-                <input
-                type="number"
-                placeholder="Enter MRP"
-                className={`p-3 border ${errors.mrp ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('mrp', { required: 'MRP is required' })}
-                />
-                {errors.mrp && <p className="text-red-500 text-xs mt-1">{errors.mrp.message}</p>}
             </div>
 
               {/* Discount */}
@@ -158,45 +129,6 @@ return (
                 {errors.discountinpercentage && <p className="text-red-500 text-xs mt-1">{errors.discountinpercentage.message}</p>}
             </div>
 
-              {/* Weight */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">Weight*</label>
-                <input
-                type="text"
-                placeholder="Enter weight"
-                className={`p-3 border ${errors.weight ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('weight', { required: 'Weight is required' })}
-                />
-                {errors.weight && <p className="text-red-500 text-xs mt-1">{errors.weight.message}</p>}
-            </div>
-
-              {/* Unit of Measurement */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">Unit of Measurement*</label>
-                <select
-                className={`p-3 border ${errors.unitOfMeasurement ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('unitOfMeasurement', { required: 'Unit is required' })}
-                >
-                <option value="">Select unit</option>
-                <option value="g">Grams (g)</option>
-                <option value="kg">Kilograms (kg)</option>
-                <option value="ml">Milliliters (ml)</option>
-                <option value="l">Liters (l)</option>
-                <option value="piece">Piece</option>
-                </select>
-                {errors.unitOfMeasurement && <p className="text-red-500 text-xs mt-1">{errors.unitOfMeasurement.message}</p>}
-            </div>
-
-              {/* Expiry Date */}
-            <div className="space-y-2">
-                <label className="text-sm font-medium text-gray-600">Expiry Date*</label>
-                <input
-                type="date"
-                className={`p-3 border ${errors.expirydate ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('expirydate', { required: 'Expiry date is required' })}
-                />
-                {errors.expirydate && <p className="text-red-500 text-xs mt-1">{errors.expirydate.message}</p>}
-        </div>
             </div>
 
             <div className="flex justify-end pt-6">

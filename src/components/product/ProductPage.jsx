@@ -1,13 +1,6 @@
-import React, { useState } from "react";
-import {
-  FiMenu,
-  FiX,
-  FiShoppingCart,
-  FiChevronDown,
-  FiChevronRight,
-  FiArrowLeft,
-  FiStar
-} from "react-icons/fi";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {FiMenu,FiX,FiShoppingCart,FiChevronDown,FiChevronRight,FiArrowLeft,FiStar} from "react-icons/fi";
 import { Link } from 'react-router-dom';
 
 export const ProductPage = () => {
@@ -34,64 +27,53 @@ export const ProductPage = () => {
       name: "🛒 Food & Beverages",
       subcategories: [
         {
-          name: "PEPSI",
+          name: "Snacks & Confectionery",
           products: [
-            { 
-              name: "Pepsi-250ml",
-              price: 20,
-              discount: 3,
-              rating: 4.5,
-            },
-            {
-              name: "Pepsi-750ml",
-              price: 40,
-              rating: 4.8,
-            },
-            {
-              name: "Pepsi-1.15L",
-              price: 99,
-              rating: 4.8,
-            }
+            // { 
+            //   name: "Pepsi-250ml",
+            //   price: 20,
+            //   discount: 3,
+            
+            // },
+            // {
+            //   name: "Pepsi-750ml",
+            //   price: 40,
+            //   rating: 4.8,
+            // },
+            // {
+            //   name: "Pepsi-1.15L",
+            //   price: 99,
+            
+            // }
           ]
         },
         {
-          name: "BALAJI",
-          products: [
-            {
-              name: "Simply-Salted",
-              price: 40,
-              rating: 4.2,
-            },
-            {
-              name: "Masala-Masti",
-              price: 40,
-              rating: 4.2,
-            },
-            {
-              name: "Peri-Peri",
-              price: 40,
-              rating: 4.2,
-            }
-          ]
-        }
+          name: "Dairy & Eggs",
+          products: []
+        },
+                {
+          name: "Bakery Products",
+          products: []
+        },
+        
       ]
     },
-
 
     {
       name: " 🧴 Personal Care & Beauty ",
       subcategories: [
         {
-          name: "Skincare Essentials",
-          products: [
-            { 
-              name: "Hyaluronic Serum",
-              price: 24.99,
-              discount: 5.00,
-              rating: 4.7,
-            }
-          ]
-        }
+          name: "Skincare",
+          products: []
+        }, 
+        {
+          name: "Haircare",
+          products: []
+        },
+        {
+          name: "Oral Care",
+          products: []
+        },
       ]
     },
 
@@ -100,16 +82,19 @@ export const ProductPage = () => {
       name: " 🏠 Home Care & Household Essentials ",
       subcategories: [
         {
-          name: "Skincare Essentials",
-          products: [
-            { 
-              name: "Hyaluronic Serum",
-              price: 24.99,
-              discount: 5.00,
-              rating: 4.7,
-            }
-          ]
-        }
+          name: "Laundry Detergents & Fabric Softeners",
+          products: []
+        },
+        {
+          name: "Dishwashing Products",
+          products: []
+        },
+        {
+          name: "Surface Cleaners & Disinfectants",
+          products: []
+        },
+        
+      
       ]
     },
 
@@ -118,16 +103,18 @@ export const ProductPage = () => {
       name: " 🩺 Health & Wellness ",
       subcategories: [
         {
-          name: "Skincare Essentials",
-          products: [
-            { 
-              name: "Hyaluronic Serum",
-              price: 24.99,
-              discount: 5.00,
-              rating: 4.7,
-            }
-          ]
-        }
+          name: "Vitamins & Supplements",
+          products: []
+        },
+        {
+          name: "Over-the-Counter Medications",
+          products: []
+        },
+        {
+          name: "First Aid & Medical Supplies",
+          products: []
+        },
+      
       ]
     },
 
@@ -136,16 +123,18 @@ export const ProductPage = () => {
       name: " 🐾 Pet Care ",
       subcategories: [
         {
-          name: "Skincare Essentials",
-          products: [
-            { 
-              name: "Hyaluronic Serum",
-              price: 24.99,
-              discount: 5.00,
-              rating: 4.7,
-            }
-          ]
-        }
+          name: "Pet Food",
+          products: []
+        },
+        {
+          name: "Grooming & Hygiene",
+          products: []
+        },
+        {
+          name: "Toys & Accessories",
+          products: []
+        },
+      
       ]
     },
 
@@ -154,16 +143,18 @@ export const ProductPage = () => {
       name: " 👶 Baby Care ",
       subcategories: [
         {
-          name: "Skincare Essentials",
-          products: [
-            { 
-              name: "Hyaluronic Serum",
-              price: 24.99,
-              discount: 5.00,
-              rating: 4.7,
-            }
-          ]
-        }
+          name: "Diapers & Wipes",
+          products: []
+        },
+        {
+          name: "Baby Food & Formula",
+          products: []
+        },
+        {
+          name: "Skincare & Bathing Products",
+          products: []
+        },
+      
       ]
     },
 
@@ -172,16 +163,18 @@ export const ProductPage = () => {
       name: " 🛠️ Miscellaneous & Lifestyle ",
       subcategories: [
         {
-          name: "Skincare Essentials",
-          products: [
-            { 
-              name: "Hyaluronic Serum",
-              price: 24.99,
-              discount: 5.00,
-              rating: 4.7,
-            }
-          ]
-        }
+          name: "Stationery & Office Supplies",
+          products: []
+        },
+        {
+          name: "Batteries & Light Bulbs",
+          products: []
+        },
+        {
+          name: "Skincare & Bathing Products",
+          products: []
+        },
+      
       ]
     }
 
@@ -216,27 +209,35 @@ export const ProductPage = () => {
     return product.discount ? product.price - product.discount : product.price;
   };
 
-  const renderRatingStars = (rating) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
+  // const renderRatingStars = (rating) => {
+  //   const stars = [];
+  //   const fullStars = Math.floor(rating);
+  //   const hasHalfStar = rating % 1 >= 0.5;
     
-    for (let i = 0; i < fullStars; i++) {
-      stars.push(<FiStar key={`full-${i}`} className="text-yellow-400 fill-current" />);
-    }
+  //   for (let i = 0; i < fullStars; i++) {
+  //     stars.push(<FiStar key={`full-${i}`} className="text-yellow-400 fill-current" />);
+  //   }
     
-    if (hasHalfStar) {
-      stars.push(<FiStar key="half" className="text-yellow-400" />);
-    }
+  //   if (hasHalfStar) {
+  //     stars.push(<FiStar key="half" className="text-yellow-400" />);
+  //   }
     
-    const emptyStars = 5 - stars.length;
-    for (let i = 0; i < emptyStars; i++) {
-      stars.push(<FiStar key={`empty-${i}`} className="text-gray-300" />);
-    }
+  //   const emptyStars = 5 - stars.length;
+  //   for (let i = 0; i < emptyStars; i++) {
+  //     stars.push(<FiStar key={`empty-${i}`} className="text-gray-300" />);
+  //   }
     
-    return stars;
-  };
+  //   return stars;
+  // };
 
+  // const getSubCategoryData = async (data) => {
+  //   const res = await axios.get("/getsubcategory",data)
+  //   console.log(res.data)
+  // }
+
+  // useEffect(() => {
+  //   getSubCategoryData()
+  // },[])
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
       {/* Mobile Menu Button */}
@@ -260,7 +261,7 @@ export const ProductPage = () => {
             <span className={`w-2 h-6 ${colors.primary} rounded-full`}></span>
             Categories
           </h2>
-          <div className="relative">
+          {/* <div className="relative">
             <Link to='/addtocart'><button className={`p-2 rounded-full ${colors.primary} text-white`}>
               <FiShoppingCart className="text-lg" />
             </button> </Link>
@@ -269,7 +270,7 @@ export const ProductPage = () => {
                 {cart.length}
               </span>
             )}
-          </div>
+          </div> */}
         </div>
         
         <ul className="space-y-4">
@@ -340,9 +341,6 @@ export const ProductPage = () => {
                         Final Price
                       </th>
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Rating
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Action
                       </th>
                     </tr>
@@ -368,12 +366,7 @@ export const ProductPage = () => {
                             {formatPrice(calculateFinalPrice(product))}
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            {renderRatingStars(product.rating)}
-                            <span className="text-xs text-gray-500 ml-1">({product.rating})</span>
-                          </div>
-                        </td>
+
                         <td className="px-6 py-4 whitespace-nowrap">
                           <button 
                             onClick={() => addToCart(product)}

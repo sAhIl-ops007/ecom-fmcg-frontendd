@@ -64,6 +64,7 @@ export const SignUp = () => {
   
   const getAreaByCityId = async (id) => {
     const res = await axios.get("/getareabycity/" + id);
+    // console.log(res.data.data)
     setAreas(res.data.data);
   };
 
