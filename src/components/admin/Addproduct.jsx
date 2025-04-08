@@ -1,29 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaPlus, FaUserCog, FaSignOutAlt, FaArrowLeft } from 'react-icons/fa';
 import axios from 'axios';
+import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 export const AddProduct = () => {
-const { 
-    register, 
-    handleSubmit, 
-    formState: { errors } 
-} = useForm();
+
+const [category, setcategory] = useState([])    
+const [subcategory, setsubcategory] = useState([])
+
+
+const { register,handleSubmit,formState:{errors}} = useForm();
 
 const submitHandler = async (data) => {
+
     console.log(data);
     const res =await axios.post("/addproduct",data)
     console.log("data",res.data.data);
-    
-
-
-    
-    
+    toast.success('Product addded successfully!', {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+    });
+    setTimeout(()=>{},2000)
 };
+
+const getAllCategory = async () => {
+    const res =await axios.get("/getcategory");
+    // console.log(res.data)
+    setcategory(res.data.data);
+}
+
+const getSubcategoryByCategoryId = async (id) => {
+    const res = await axios.get("/getsubcategorybycategory/" + id);
+    console.log(res.data);
+    setsubcategory(res.data.data);
+}
+
+
+useEffect(() =>{
+    getAllCategory()
+},[])
 
 return (
     <div className="flex h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        <ToastContainer/>
       {/* Sidebar - Same as AdminProfile */}
     <div className="w-72 bg-white/90 backdrop-blur-sm shadow-xl p-6 hidden md:block border-r border-gray-200">
         <div className="flex items-center mb-8">
@@ -77,16 +105,29 @@ return (
 
         <form onSubmit={handleSubmit(submitHandler)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
               {/* Product Name */}
             <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-600">Product Name*</label>
                 <input
                 type="text"
                 placeholder="Enter product name"
-                className={`p-3 border ${errors.productName ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('productName', { required: 'Product name is required' })}
+                className={`p-3 border ${errors.pname ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+                {...register('pname', { required: 'Product name is required' })}
                 />
-                {errors.productName && <p className="text-red-500 text-xs mt-1">{errors.productName.message}</p>}
+                {errors.pname && <p className="text-red-500 text-xs mt-1">{errors.pname.message}</p>}
+            </div>
+
+
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-600">Quantity*</label>
+                <input
+                type="text"
+                placeholder="Enter quantity"
+                className={`p-3 border ${errors.quantity ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+                {...register('quantity', { required: 'quantity is required' })}
+                />
+                {errors.quantity && <p className="text-red-500 text-xs mt-1">{errors.quantity.message}</p>}
             </div>
 
               {/* Product Image */}         
@@ -119,14 +160,46 @@ return (
                 <input
                 type="number"
                 placeholder="Enter discount percentage"
-                className={`p-3 border ${errors.discountinpercentage ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
-                {...register('discountinpercentage', { 
+                className={`p-3 border ${errors.pdiscount ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+                {...register('pdiscount', { 
                     required: 'Discount is required',
                     min: { value: 0, message: 'Discount cannot be negative' },
                     max: { value: 100, message: 'Discount cannot exceed 100%' }
                 })}
                 />
-                {errors.discountinpercentage && <p className="text-red-500 text-xs mt-1">{errors.discountinpercentage.message}</p>}
+                {errors.pdiscount && <p className="text-red-500 text-xs mt-1">{errors.pdiscount.message}</p>}
+            </div>
+
+              {/* Category */}
+
+            <div className="space-y-2">
+                <label className="text-sm font-medium text-gray-600">Category*</label>
+                <select
+                    {...register("categoryId", { required: "Category is required" })}
+                    onChange={(e) => getSubcategoryByCategoryId(e.target.value)}
+                    className={`p-3 border ${errors.categoryId ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+                >
+                    <option value="">Select Category</option>
+                    {category.map((cat) => (
+                    <option key={cat._id} value={cat._id}>{cat.categoryname}</option>
+                    ))}
+                </select>
+                {errors.categoryId && <p className="text-red-500 text-xs mt-1">{errors.categoryId.message}</p>}
+            </div>
+
+
+            <div className="space-y-2">
+            <label className="text-sm font-medium text-gray-600">Sub-Category*</label>
+            <select
+                {...register("subCategoryId", { required: "Sub-Category is required" })}
+                className={`p-3 border ${errors.subCategoryId ? 'border-red-500' : 'border-gray-200'} rounded-xl w-full focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all`}
+            >
+                <option value="">Select Sub-Category</option>
+                {subcategory.map((subcat) => (
+                <option key={subcat._id} value={subcat._id}>{subcat.subCategoryName}</option>
+                ))}
+            </select>
+                {errors.subCategoryId && <p className="text-red-500 text-xs mt-1">{errors.subCategoryId.message}</p>}
             </div>
 
             </div>

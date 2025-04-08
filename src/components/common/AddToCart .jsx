@@ -5,22 +5,7 @@ import { useState } from 'react';
 
 export const AddToCart = () => {
     const [cartItems, setCartItems] = useState([
-        {
-            id: 1,
-            name: 'Baby Diaper Premium',
-            price: 10,
-            quantity: 1,
-            img: 'https://images.unsplash.com/photo-1590841609987-4ac211afdde1?w=200',
-            color: 'bg-blue-100'
-        },
-        {
-            id: 2,
-            name: 'Organic Baby Lotion',
-            price: 15,
-            quantity: 1,
-            img: 'https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?w=200',
-            color: 'bg-pink-100'
-        },
+
     ]);
 
     const increaseQuantity = (id) => {

@@ -57,14 +57,13 @@ export const SignUp = () => {
   };
 
   const getCityByStateId = async (id) => {
-    const res = await axios.get("getcitybystate/" + id);
+    const res = await axios.get("/getcitybystate/" + id)   
     setCities(res.data.data);
-    setAreas([]); // Reset areas when state changes
+    // setAreas([]); // Reset areas when state changes
   };
   
   const getAreaByCityId = async (id) => {
     const res = await axios.get("/getareabycity/" + id);
-    // console.log(res.data.data)
     setAreas(res.data.data);
   };
 

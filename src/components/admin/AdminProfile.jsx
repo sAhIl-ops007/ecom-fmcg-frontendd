@@ -5,6 +5,7 @@ import { FaPlus , FaUserCog, FaSignOutAlt } from 'react-icons/fa';
 export const AdminProfile = () => {
   return (
     <div className="flex h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      
       {/* Sidebar */}
       <div className="w-72 bg-white/90 backdrop-blur-sm shadow-xl p-6 hidden md:block border-r border-gray-200">
         <div className="flex items-center mb-8">
