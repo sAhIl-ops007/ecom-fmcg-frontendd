@@ -207,7 +207,7 @@ export const SignUp = () => {
                 <div className="relative">
                   <input
                     type="tel"
-                    {...register("phonenumber", { 
+                    {...register("phonenumber", {
                       required: "Phone number is required",
                       pattern: {
                         value: /[6-9]{1}[0-9]{9}/,

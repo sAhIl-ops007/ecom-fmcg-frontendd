@@ -51,7 +51,7 @@ export const UserDashboard = () => {
         </Link>
 
         <Link 
-          to="/orders" 
+          to="/orders"
           className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-all duration-200 text-white/90 hover:text-white"
         >
           <FiShoppingCart className="w-5 h-5" />
@@ -60,7 +60,7 @@ export const UserDashboard = () => {
         </Link>
 
         <Link 
-          to="/" 
+          to="/product"
           className="flex items-center space-x-3 p-3 rounded-lg hover:bg-white/10 transition-all duration-200 text-white/90 hover:text-white"
         >
           <FiShoppingBag className="w-5 h-5" />

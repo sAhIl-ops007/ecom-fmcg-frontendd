@@ -1,5 +1,5 @@
 import React from 'react'
-import { UserDashboard } from '../layouts/UserDashboard'
+import { UserDashboard } from './UserDashboard'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 

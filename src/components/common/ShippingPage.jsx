@@ -1,8 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { FiUser, FiHome, FiMapPin, FiMail, FiPhone } from 'react-icons/fi';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FiUser, FiHome, FiMapPin, FiMail, FiPhone, FiArrowRight } from 'react-icons/fi';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const ShippingPage = () => {
   const {
@@ -11,22 +13,45 @@ export const ShippingPage = () => {
     formState: { errors },
   } = useForm();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
+
   const submitHandler = async (data) => {
-    // console.log(data);
-    try{
-      const res = await axios.post("/addshipping",data)
-      if(res.status ===200){
-        alert("Shipping details added successfully")
-      }
-
-    }catch(err){
-      console.log(err)
+    setIsSubmitting(true);
+    try {
+      const res = await axios.post("/addshipping", data);
+      console.log(res.data.data);
+      
+      toast.success("Shipping details added successfully!", {
+        position: "top-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        onClose: () => navigate('/payment')
+      });
+      
+    } catch (err) {
+      console.log(err);
+      toast.error("Failed to save shipping details", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center p-4">
+      <ToastContainer />
       <div className="w-full max-w-md bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-gray-100">
         <div className="p-8">
           <div className="text-center mb-8">
@@ -92,64 +117,6 @@ export const ShippingPage = () => {
               )}
             </div>
 
-            {/* City and Postal Code */}
-            <div className="grid grid-cols-2 gap-4">
-              {/* <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">City</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FiMapPin className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    {...register("cityId", {
-                      required: "City is required",
-                    })}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                      errors.city ? 'border-red-300' : 'border-gray-300'
-                    } focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
-                    placeholder="New York"
-                  />
-                </div>
-                {errors.city && (
-                  <p className="mt-1 text-sm text-red-600">{errors.city.message}</p>
-                )}
-              </div> */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Postal Code</label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FiMail className="h-5 w-5 text-gray-400" />
-                  </div>
-                  <input
-                    type="text"
-                    {...register("pincode", {
-                      required: "Postal code is required",
-                      pattern: {
-                        value: /^[0-9]+$/,
-                        message: "Postal code must be numeric",
-                      },
-                      minLength: {
-                        value: 4,
-                        message: "Postal code must be at least 4 digits",
-                      },
-                      maxLength: {
-                        value: 10,
-                        message: "Postal code must be less than 10 digits",
-                      },
-                    })}
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl border ${
-                      errors.postalCode ? 'border-red-300' : 'border-gray-300'
-                    } focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all`}
-                    placeholder="10001"
-                  />
-                </div>
-                {errors.postalCode && (
-                  <p className="mt-1 text-sm text-red-600">{errors.postalCode.message}</p>
-                )}
-              </div>
-            </div>
-
             {/* Phone Number */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
@@ -178,14 +145,15 @@ export const ShippingPage = () => {
             </div>
 
             <div className="pt-4">
-              <Link to='/payment'>
               <button
                 type="submit"
-                className="block w-full px-6 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-[1.01] shadow-md hover:shadow-lg active:scale-[0.99] text-center"
+                disabled={isSubmitting}
+                className={`w-full px-6 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-medium rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:scale-[1.01] shadow-md hover:shadow-lg active:scale-[0.99] text-center ${
+                  isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
-                Proceed to Payment
+                {isSubmitting ? 'Submitting...' : 'Submit & Proceed'}
               </button>
-              </Link>
             </div>
           </form>
         </div>

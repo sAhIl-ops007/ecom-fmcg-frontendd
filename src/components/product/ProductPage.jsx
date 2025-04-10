@@ -2,8 +2,31 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FiArrowLeft, FiChevronDown, FiChevronRight, FiMenu, FiShoppingCart, FiX } from "react-icons/fi";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addItem } from "../../redux/cart/cartSlice";
+import { ToastContainer, toast } from 'react-toastify';
 
 export const ProductPage = () => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product) => {
+    dispatch(addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      discount: product.discount || 0
+    }));
+    toast.success(`${product.name} added to cart!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState(null);
@@ -91,7 +114,6 @@ export const ProductPage = () => {
     }
   ];
 
-
   const getProductBySubId = async (subCategoryId) => {
     try {
       setLoading(true);
@@ -104,8 +126,8 @@ export const ProductPage = () => {
             ...category,
             subcategories: category.subcategories.map(subcat => 
               subcat.id === subCategoryId 
-                ? { 
-                    ...subcat, 
+                ? {
+                    ...subcat,
                     products: res.data.data.map(product => ({
                       id: product._id,
                       name: product.pname,
@@ -138,15 +160,15 @@ export const ProductPage = () => {
     setSelectedSubcategory(null);
   };
 
-  // Handle subcategory 
-  const handleSubcategoryClick = async (subcategory) => {
+  // Handle subcategory
+    const handleSubcategoryClick = async (subcategory) => {
     setSelectedSubcategory(subcategory);
     
+  
     // Check if products are already loaded
-    const category = categories.find(cat => 
-      cat.subcategories.some(sub => sub.id === subcategory.id)
-    );
-    
+    const category = categories.find(cat =>
+      cat.subcategories.some(sub => sub.id === subcategory.id));
+
     const subcat = category?.subcategories.find(sub => sub.id === subcategory.id);
     
     if (!subcat?.products?.length) {
@@ -189,6 +211,19 @@ export const ProductPage = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-50 font-sans">
+
+          <ToastContainer
+            position="top-right"
+            autoClose={2000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
       {/* Mobile Menu Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -217,7 +252,7 @@ export const ProductPage = () => {
               </button>
             </Link>
 
-            {cart.length > 0 && (
+            {cart.length > 1 && (
               <span className="absolute -top-1 -right-1 bg-pink-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                 {cart.length}
               </span>
@@ -326,7 +361,7 @@ export const ProductPage = () => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                   <button
-                                    onClick={() => addToCart(product)}
+                                    onClick={() => handleAddToCart(product)}
                                     className={`${colors.primary} ${colors.primaryHover} text-white px-4 py-2 rounded transition-colors flex items-center justify-center gap-2 text-sm font-medium`}
                                   >
                                     <FiShoppingCart size={14} /> Add
@@ -364,7 +399,7 @@ export const ProductPage = () => {
                       {subcat.name}
                     </h3>
                     <p className="text-sm text-gray-500 mt-1">
-                      {subcat.products.length} products available
+                      products available
                     </p>
                     <div className="mt-4 flex justify-between items-center">
                       <span className="text-xs font-medium text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">
