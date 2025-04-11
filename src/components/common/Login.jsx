@@ -37,6 +37,8 @@ export const Login = () => {
             navigate("/userprofile");
           } else if (res.data.data.roleId.rolename === "admin") {
             navigate("/adminprofile");
+          }else if (res.data.data.roleId.rolename === "vendor"){
+            navigate("/adminprofilev")
           }
         }, 2000);
       }

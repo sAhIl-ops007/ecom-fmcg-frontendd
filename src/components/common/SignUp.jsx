@@ -13,7 +13,6 @@ export const SignUp = () => {
   const [cities, setCities] = useState([]);
   const [areas, setAreas] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
 
@@ -57,7 +56,7 @@ export const SignUp = () => {
   };
 
   const getCityByStateId = async (id) => {
-    const res = await axios.get("/getcitybystate/" + id)   
+    const res = await axios.get("/getcitybystate/" + id)
     setCities(res.data.data);
     // setAreas([]); // Reset areas when state changes
   };

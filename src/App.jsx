@@ -17,6 +17,7 @@ import { AddToCart } from './components/product/AddToCart ';
 import { ForgotPass } from './components/common/ForgotPass';
 import { ResetPass } from './components/common/ResetPass';
 import { AddProduct } from './components/product/Addproduct';
+import { AdminProfileV } from './components/admin/AdminProfileV';
 
 
 function App() {
@@ -33,8 +34,10 @@ function App() {
       <Route path='/userdashboard' element={<UserDashboard/>}></Route>
       <Route path='/userprofile' element={<UserProfile/>}></Route>
 
-      <Route path='/adminprofile' element={<AdminProfile/>}></Route>
+      <Route path='/adminprofilev' element={<AdminProfile/>}></Route> // vendor
+      <Route path='/adminprofile' element={<AdminProfileV/>}></Route> //admin
       <Route path='/addproduct' element={<AddProduct/>}></Route>
+
       
       <Route path='/login' element={<Login />}></Route>
       <Route path='/signup' element={<SignUp />}></Route>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-import { FiMenu, FiX, FiArrowRight, FiMail, FiStar } from 'react-icons/fi';
+import { FiMenu, FiX, FiArrowRight, FiMail, FiStar, FiUser } from 'react-icons/fi';
 
 export const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -31,17 +31,19 @@ export const Home = () => {
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link 
+          <Link 
               to="/login"
-              className="px-5 py-2 rounded-lg font-medium text-white/90 hover:text-white transition-colors"
+              className="px-6 py-2.5 rounded-lg font-medium text-white border-2 border-white/30 hover:border-white/80 transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/20 flex items-center"
             >
-              Login
+              <FiUser className="mr-2" />
+              Log-in
             </Link>
             <Link 
               to="/signup"
-              className="px-5 py-2 bg-white text-indigo-600 rounded-lg font-medium hover:bg-gray-100 transition-colors shadow-sm"
+              className="px-6 py-2.5 bg-white text-indigo-600 rounded-lg font-bold hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-0.5 transform active:translate-y-0 flex items-center"
             >
-              Sign Up
+              Sign-up
+              <FiArrowRight className="ml-2" />
             </Link>
           </div>
 
@@ -228,16 +230,7 @@ export const Home = () => {
           <p className="text-indigo-100 mb-8 max-w-2xl mx-auto">
             Subscribe to our newsletter for exclusive offers and the latest product updates
           </p>
-          {/* <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-300"
-            />
-            <button className="px-6 py-3 bg-white text-indigo-600 font-medium rounded-lg hover:bg-gray-100 transition-colors shadow-sm">
-              Subscribe
-            </button>
-          </div> */}
+
         </div>
       </div>
 

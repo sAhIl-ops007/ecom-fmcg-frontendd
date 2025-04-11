@@ -7,7 +7,7 @@ import { ToastContainer, toast, Bounce } from 'react-toastify';
 
 export const AddProduct = () => {
 
-const [category, setcategory] = useState([])    
+const [category, setcategory] = useState([])
 const [subcategory, setsubcategory] = useState([])
 
 
@@ -56,9 +56,9 @@ return (
     <div className="w-72 bg-white/90 backdrop-blur-sm shadow-xl p-6 hidden md:block border-r border-gray-200">
         <div className="flex items-center mb-8">
         <div className="w-10 h-10 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 flex items-center justify-center text-white font-bold mr-3">
-            A
+            V
         </div>
-        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Admin Panel</h2>
+        <h2 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">Vendor Panel</h2>
         </div>
         <ul className="space-y-3">
         <li>
@@ -130,7 +130,7 @@ return (
                 {errors.quantity && <p className="text-red-500 text-xs mt-1">{errors.quantity.message}</p>}
             </div>
 
-              {/* Product Image */}         
+              {/* Product Image */}
             {/* <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-600">Product Image*</label>
                 <input

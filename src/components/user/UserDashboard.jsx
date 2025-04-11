@@ -75,7 +75,7 @@ export const UserDashboard = () => {
 
       {/* Bottom Logout Button */}
       <div className="absolute bottom-6 left-6 right-6">
-        <Link to='/login'> <button className="w-full flex items-center justify-center space-x-3 p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 text-white/90 hover:text-white">
+        <Link to='/login'> <button className="w-full flex items-center justify-center space-x-3 p-3 rounded-lg bg-white/10 hover:bg-white/20 transition-all duration-200 text-white/90 hover:text-white" >
           <FiLogOut className="w-5 h-5" />
           <span>Logout</span>
         </button></Link>
